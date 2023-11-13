@@ -1,12 +1,18 @@
+<?php
+    //Setting cookie
+    setcookie('Score', '0', time() + 3600);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Buy Your Way to a Better Education!</title>
-		<link href="buyagrade.css" type="text/css" rel="stylesheet" />
+		<title>Answer Page</title>
+		<link rel="stylesheet" href="quetions.css">
 	</head>
 
 	<body>
 	<?php
+
+		$currentScore = (int)$_COOKIE['Score'];
 
 		$error_message = "";
 
@@ -26,22 +32,18 @@
 		}
 
 		?>
-		<h1>Thanks, sucker!</h1>
-
-		<p>Your information has been recorded.</p>
-
-		<dl>
-			<dt>Answer</dt>
-			<dd><?php print $_POST["answer"] ?></dd>
-
-			<dt>Correct</dt>
-			<dd><?php
+		<?php
                 if (strcasecmp($_POST["answer"], "ibm") == 0) {
-                    print "yes";
+                    echo "<h1> Correct Answer!</h1>";
+					$currentScore += 500;
+
                 } else {
-                    print "no";
-                }                
-            ?></dd>
-		</dl>
+                    print "<h1> Sorry, Incorrect Answer...</h1>";
+					$currentScore -= 500;
+                } 
+				setcookie('Score', $currentScore, time() + 3600); 
+				echo $currentScore;             
+            ?>
+		Answer:<?php print $_POST["answer"] ?>
 	</body>
 </html> 
