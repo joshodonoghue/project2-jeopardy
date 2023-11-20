@@ -35,22 +35,3 @@
     margin: 0;
     padding: 0;
   }
-  .scoreboard{
-background-color: aquamarine;
-height: 20px; 
-margin-bottom: 0px;
-margin-top: 0px; 
-
- }
- .header {
-  width: 100%; /* Full width */
-  background-color: #333; /* Choose your color */
-  color: white;
-  padding: 0px;/* Add some padding */
-  text-align: center; /* Center the text */
-  position: relative ; /* Fixed at the top */
-  top: 0;
-  left: 0;
-  margin-top: 0px; 
-  z-index: 1000; /* Ensure it stays on top of other content */
-}

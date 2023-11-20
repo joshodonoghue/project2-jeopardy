@@ -1,6 +1,7 @@
 <?php
     //Setting cookie
-    setcookie('Score', '0', time() + 3600);
+    setcookie('P1Score', '0', time() + 3600);
+	setcookie('P2Score', '0', time() + 3600);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,6 +12,7 @@
 
 	<body>
 	<?php
+		
 
 		$currentScore = (int)$_COOKIE['Score'];
 
@@ -32,7 +34,6 @@
 		}
 
 		?>
-		
 		<?php
                 if (strcasecmp($_POST["answer"], "ibm") == 0) {
                     echo "<h1> Correct Answer!</h1>";
@@ -44,8 +45,7 @@
                 } 
 				setcookie('Score', $currentScore, time() + 3600); 
 				echo $currentScore;             
-            
-			?>
+            ?>
 		Answer:<?php print $_POST["answer"] ?>
 	</body>
 </html> 
