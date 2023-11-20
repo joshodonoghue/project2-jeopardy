@@ -32,6 +32,7 @@
 		}
 
 		?>
+		
 		<?php
                 if (strcasecmp($_POST["answer"], "ibm") == 0) {
                     echo "<h1> Correct Answer!</h1>";
@@ -43,7 +44,8 @@
                 } 
 				setcookie('Score', $currentScore, time() + 3600); 
 				echo $currentScore;             
-            ?>
+            
+			?>
 		Answer:<?php print $_POST["answer"] ?>
 	</body>
 </html> 
