@@ -1,51 +1,59 @@
 <?php
-    //Setting cookie
+// Initialize cookies only if they don't exist
+if (!isset($_COOKIE['P1Score'])) {
     setcookie('P1Score', '0', time() + 3600);
-	setcookie('P2Score', '0', time() + 3600);
+}
+if (!isset($_COOKIE['P2Score'])) {
+    setcookie('P2Score', '0', time() + 3600);
+}
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<title>Answer Page</title>
-		<link rel="stylesheet" href="quetions.css">
-	</head>
+<head>
+    <title>Answer Page</title>
+    <link rel="stylesheet" href="answer.css">
+</head>
+<body>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Initialize currentScore
+        $currentScore = 0;
 
-	<body>
-	<?php
-		
+        // Check if player is set
+        if (isset($_POST['Player'])) {
+            $player = $_POST['Player'];
+            $currentScore = ($player == 0) ? (int)$_COOKIE['P1Score'] : (int)$_COOKIE['P2Score'];
+        }
 
-		$currentScore = (int)$_COOKIE['Score'];
+        // Process the answer
+        if (!empty($_POST['answer'])) {
+            if (strcasecmp($_POST["answer"], "ibm") == 0) {
+                $currentScore += 500;
+                echo "<h1> Correct Answer!</h1>";
+            } else {
+                $currentScore -= 500;
+                echo "<h1> Sorry, Incorrect Answer...</h1>";
+            }
 
-		$error_message = "";
+            // Update score in the cookie
+            if ($player == 0) {
+                setcookie('P1Score', $currentScore, time() + 3600);
+            } else {
+                setcookie('P2Score', $currentScore, time() + 3600);
+            }
+        } else {
+            echo "<h2>Sorry</h2>";
+            echo "<p>You didn't submit an answer!</p>";
+            echo '<a href="javascript:history.back()">Try again?</a>';
+            exit;
+        }
+    }
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			if (empty($_POST['answer'])) {
-				$error_message = "You didn't submit an answer!";
-			} else {
-				$data = $_POST["answer"];
-			}
-		}
-
-		if (!empty($error_message)) {
-			echo "<h2>Sorry</h2>";
-			echo "<p>" . $error_message . "</p>";
-			echo '<a href="javascript:history.back()">Try again?</a>';
-			exit;
-		}
-
-		?>
-		<?php
-                if (strcasecmp($_POST["answer"], "ibm") == 0) {
-                    echo "<h1> Correct Answer!</h1>";
-					$currentScore += 500;
-
-                } else {
-                    print "<h1> Sorry, Incorrect Answer...</h1>";
-					$currentScore -= 500;
-                } 
-				setcookie('Score', $currentScore, time() + 3600); 
-				echo $currentScore;             
-            ?>
-		Answer:<?php print $_POST["answer"] ?>
-	</body>
-</html> 
+    // Display the updated scoreboard
+    echo "<h2>Scoreboard</h2>";
+    echo "<p>Player 1 Score: " . ($player == 0 ? $currentScore : intval($_COOKIE['P1Score'])) . "</p>";
+    echo "<p>Player 2 Score: " . ($player == 1 ? $currentScore : intval($_COOKIE['P2Score'])) . "</p>";
+    ?>
+</body>
+</html>
