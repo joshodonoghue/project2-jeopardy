@@ -24,22 +24,15 @@ if(isset($_POST['Register'])){
 <head>
 <meta charset="utf-8">
 <title>PHP Registration Script</title>
-<link href="./css/style.css" rel="stylesheet">
+<link href="login.css" rel="stylesheet">
 </head>
 <body>
-<div id="Frame0">
-  <h1>PHP Registration Script Without Using Database Demo</h1>
-</div>
+
 <br>
 <form action="" method="post" name="Register_Form">
-  <table width="400" border="0" align="center" cellpadding="5" cellspacing="1" class="Table">
-    <?php if(isset($msg)){?>
-    <tr>
-      <td colspan="2" align="center" valign="top"><?php echo $msg;?></td>
-    </tr>
-    <?php } ?>
-    <tr>
-      <td colspan="2" align="left" valign="top"><h3>Register</h3></td>
+  <div class="login-container"><table>
+    
+      <td colspan="2" align="" valign="top"><h3>Register</h3></td>
     </tr>
     <tr>
       <td align="right" valign="top">New Username</td>
@@ -53,7 +46,7 @@ if(isset($_POST['Register'])){
       <td>&nbsp;</td>
       <td><input name="Register" type="submit" value="Register" class="Button3"></td>
     </tr>
-  </table>
+  </table></Div>
 </form>
 </body>
 </html>

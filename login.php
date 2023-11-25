@@ -23,14 +23,14 @@ if (isset($_SESSION['registration_success'])) {
 <head>
 <meta charset="utf-8">
 <title>PHP Login Script Without Using Database</title>
-<link href="./css/style.css" rel="stylesheet">
+<link href="login.css" rel="stylesheet">
 </head>
 <body>
-<div id="Frame0">
-  <h1>PHP Login Script Without Using Database Demo</h1>
-</div>
-<br>
+
+
+
 <form action="" method="post" name="main.html">
+<div class = "login-container" >
   <table width="400" border="0" align="center" cellpadding="5" cellspacing="1" class="Table">
     <?php if(isset($msg)){?>
     <tr>
@@ -53,6 +53,8 @@ if (isset($_SESSION['registration_success'])) {
       <td><input name="Submit" type="submit" value="Login" class="Button3"></td>
     </tr>
   </table>
+  </div>
 </form>
+</div>
 </body>
 </html>
