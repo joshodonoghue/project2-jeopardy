@@ -7,14 +7,13 @@ if (!isset($_COOKIE['P2Score'])) {
     setcookie('P2Score', '0', time() + 3600);
 }
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Answer Page</title>
     <link rel="stylesheet" href="answer.css">
 </head>
-<body>
+<body >
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Initialize currentScore
@@ -30,10 +29,10 @@ if (!isset($_COOKIE['P2Score'])) {
         if (!empty($_POST['answer'])) {
             if (strcasecmp($_POST["answer"], "ibm") == 0) {
                 $currentScore += 500;
-                echo "<h1> Correct Answer!</h1>";
+                echo "<h1 class='correct'> Correct Answer!</h1>";
             } else {
                 $currentScore -= 500;
-                echo "<h1> Sorry, Incorrect Answer...</h1>";
+                echo "<h1 class='incorrect'> Sorry, Incorrect Answer...</h1>";
             }
 
             // Update score in the cookie
@@ -51,9 +50,10 @@ if (!isset($_COOKIE['P2Score'])) {
     }
 
     // Display the updated scoreboard
-    echo "<h2>Scoreboard</h2>";
-    echo "<p>Player 1 Score: " . ($player == 0 ? $currentScore : intval($_COOKIE['P1Score'])) . "</p>";
-    echo "<p>Player 2 Score: " . ($player == 1 ? $currentScore : intval($_COOKIE['P2Score'])) . "</p>";
+    echo "<h2 class='score'>Scoreboard</h2>";
+    echo "<p class='score1' >Player 1 Score: " . ($player == 0 ? $currentScore : intval($_COOKIE['P1Score'])) . "</p>";
+    echo "<p class='score2'>Player 2 Score: " . ($player == 1 ? $currentScore : intval($_COOKIE['P2Score'])) . "</p>";
     ?>
+    <a href="main.html"> <button type="button">Main Menu</button></a>
 </body>
 </html>
