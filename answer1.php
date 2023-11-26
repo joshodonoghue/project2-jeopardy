@@ -27,7 +27,7 @@ if (!isset($_COOKIE['P2Score'])) {
 
         // Process the answer
         if (!empty($_POST['answer'])) {
-            if (strcasecmp($_POST["answer"], "World War 2") == 0) {
+            if (strcasecmp($_POST["answer"], "pac man") == 0 || strcasecmp($_POST["answer"], "pac-man") == 0) {
                 $currentScore += 500;
                 echo "<h1 class='correct'> Correct Answer!</h1>";
             } else {
